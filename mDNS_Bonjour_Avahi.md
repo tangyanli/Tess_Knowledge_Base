@@ -53,11 +53,11 @@ Avahi is primarily targetted at Linux systems and ships by default in most distr
 通过如下命令查询协议是_test._tcp的server名
 > avahi-browse _test._tcp -r
 
-   >  =     lo IPv4 test                                          _test._tcp           local
-   >        hostname = [localhost]
-   >        address = [127.0.0.1]
-   >        port = [1234]
-   >        txt = []
+   >  =     lo IPv4 test                                          _test._tcp           local <br>
+   >        hostname = [localhost] <br>
+   >        address = [127.0.0.1]  <br>
+   >        port = [1234]          <br>
+   >        txt = []               <br>
 
 
 # 4. DHCP(动态主机配置协议)
@@ -66,11 +66,11 @@ Avahi is primarily targetted at Linux systems and ships by default in most distr
 # 5. Using Network Printers
 ## dnssd
 A printer that supports Bonjour can be found automatically using the dnssd backend. Run the lpinfo(8) command to find your printer's URI:
-> $ lpinfo --include-schemes dnssd -v
-   > + network dnssd://Acme%20Laser%20Pro._ipp._tcp.local./?uuid=545253fb-1cb7-4d8d-98ed-ab6cd607cea7
-   > + network dnssd://Bar99._printer.tcp.local./?uuid=f9efff58-9086-4c95-accb-81dee876a475
-   > + network dnssd://Example%20EX-42._ipps._tcp.local./?uuid=4a0c67ad-2824-4ddf-9115-7d4226c5fe65
-   > + network dnssd://Foo%20Fighter-1969._pdl-datastream._tcp.local./?uuid=4e216bea-c3de-4f65-a710-c99e11c80d2b
+> $ lpinfo --include-schemes dnssd -v <br>
+   > network dnssd://Acme%20Laser%20Pro._ipp._tcp.local./?uuid=545253fb-1cb7-4d8d-98ed-ab6cd607cea7 <br>
+   > network dnssd://Bar99._printer.tcp.local./?uuid=f9efff58-9086-4c95-accb-81dee876a475 <br>
+   > network dnssd://Example%20EX-42._ipps._tcp.local./?uuid=4a0c67ad-2824-4ddf-9115-7d4226c5fe65 <br>
+   > network dnssd://Foo%20Fighter-1969._pdl-datastream._tcp.local./?uuid=4e216bea-c3de-4f65-a710-c99e11c80d2b <br>
  
 ## Internet Printing Protocol (IPP)
 IPP is the only protocol that CUPS supports natively and is supported by most network printers and print servers. IPP supports encryption and other security features over port 631 and uses the http (Windows), ipp, and ipps backends. Device URIs for these backends look like this:
@@ -94,9 +94,9 @@ IPP is the only protocol that CUPS supports natively and is supported by most ne
    + [IPv4设定]-[mDNS设定]-[mDNS名]:Tess MF7XXC
    
    客户端 
-   + 运行$driverless, 输出
-      + ipp://Tesscf9d6c.local:631/ipp/print
-   + 运行$lpinfo -v, 输出
-      + network dnssd://Tess%20MF7XXC._ipp._tcp.local/?uuid=6d4ff0ce-6b11-11d8-8020-f4a997cf9d6c
-      + network ipp://Tesscf9d6c.local:631/ipp/print
+   + 运行$driverless, 输出 <br>
+      ipp://Tesscf9d6c.local:631/ipp/print
+   + 运行$lpinfo -v, 输出 <br>
+      network dnssd://Tess%20MF7XXC._ipp._tcp.local/?uuid=6d4ff0ce-6b11-11d8-8020-f4a997cf9d6c <br>
+      network ipp://Tesscf9d6c.local:631/ipp/print <br>
    + 通过ipp-over-usb得到的dnssd name:Tess MF7XXC
