@@ -59,6 +59,9 @@ Avahi is primarily targetted at Linux systems and ships by default in most distr
    >        port = [1234]          <br>
    >        txt = []               <br>
 
+You can also use avahi-discover to find the server. <br>
+man avahi-discover - Browse for mDNS/DNS-SD services using the Avahi-daemon. <br>
+Show a real-time graphical browse list for mDNS/DNS-SD network services running on the local LAN using the Avahi daemon. <br>
 
 # 4. DHCP(动态主机配置协议)
 是一个局域网的网络协议。指的是由服务器控制一段IP地址范围，客户机登录服务器时就可以自动获得服务器分配的IP地址和子网掩码。默认情况下，DHCP作为Windows Server的一个服务组件不会被系统自动安装，还需要管理员手动安装并进行必要的配置。
