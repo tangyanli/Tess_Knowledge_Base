@@ -2,7 +2,7 @@ From
 + http://multicastdns.org/
 + https://support.apple.com/zh-cn/guide/deployment-reference-macos/apd0401947ff/1/web/1
 + https://www.cups.org/doc/network.html
-+ https://binkery.com/
++ https://binkery.com/archives/318.html
 + https://www.cnblogs.com/bonelee/p/7567029.html
 
 # 1. mDNS & DNSSD
@@ -15,6 +15,14 @@ working groups. The requirements are driveen by the zeroconf working group; the 
 for the DNSEXT group.
 
 While the requirements for Zeroconf name resolution could be met by designing an entirely new protocol,it is better to provide this functionality by making minimal changes to the current standard DNS protocol. This saves application programmers from having to learn new APIs, and saves application programmers from having to write application code two different ways — one way for large configured networks and a different way for small Zeroconf networks. It means that most current applications need no changes at all to work correctly using mDNS in a Zeroconf network. It also means that engineers do not have to learn an entirely new protocol, and current network packet capture tools can already decode and display DNS packets, so they do not have to be updated to understand new packet formats.
+
+mDNS , multicast DNS, 可以理解为局域网内部的 DNS 系统，它和 DNS 有很多相似的地方，通过它可以实现局域网内部的服务发现、查找和广播。同时它是基于组播的协议。
+在局域网内，你要通过一台主机和其他主机进行通信，你需要知道对方的 ip 地址，但是有些时候，你并不知道对方的 ip 地址，因为一般使用 DHCP 动态分配 ip 地址的局域网内，各个主机的 IP 地址是由 DHCP 服务器来帮你分配 IP 地址的。所以在很多情况下，你要知道对方的 IP 地址是比较麻烦的。
+
+首先，在 IP 协议里规定了一些保留地址，其中有一个是 224.0.0.251，对应的 IPv6 地址是 [FF02::FB]。
+mDNS 协议规定了端口为 5353，而 DNS 的端口是 53。
+mDNS 基于 UDP 协议。DNS 一般也是基于 UDP 协议的，但是也可以使用 TCP 协议。
+如果理解了 DNS 协议，再去理解 mDNS 协议就很简单了，区别只是 mDNS 一般作用在一个局域网内的，有特定的 IP 地址，也就是 224.0.0.251,有特定的端口 5353,mDNS 的作用是实现局域网内的服务发现，查询，注册，DNS 作用是实现域名的解析，作用大概是一样的。
 
 * **RFC 6762 Multicast DNS** specifies how to perform DNS queries over IP Multicast.
 ## DNS Service Discovery (DNS-SD)
