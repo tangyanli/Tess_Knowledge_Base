@@ -3,6 +3,7 @@ From
 + https://support.apple.com/zh-cn/guide/deployment-reference-macos/apd0401947ff/1/web/1
 + https://www.cups.org/doc/network.html
 + https://binkery.com/
++ https://www.cnblogs.com/bonelee/p/7567029.html
 
 # 1. mDNS & DNSSD
 ## Multicast DNS（mDNS）
