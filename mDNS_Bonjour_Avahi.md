@@ -4,6 +4,7 @@ From
 + https://www.cups.org/doc/network.html
 + https://binkery.com/archives/318.html
 + https://www.cnblogs.com/bonelee/p/7567029.html
++ https://www.jianshu.com/p/e66b0d400807
 
 # 1. mDNS & DNSSD
 ## Multicast DNS（mDNS）
@@ -23,6 +24,10 @@ mDNS , multicast DNS, 可以理解为局域网内部的 DNS 系统，它和 DNS 
 mDNS 协议规定了端口为 5353，而 DNS 的端口是 53。
 mDNS 基于 UDP 协议。DNS 一般也是基于 UDP 协议的，但是也可以使用 TCP 协议。
 如果理解了 DNS 协议，再去理解 mDNS 协议就很简单了，区别只是 mDNS 一般作用在一个局域网内的，有特定的 IP 地址，也就是 224.0.0.251,有特定的端口 5353,mDNS 的作用是实现局域网内的服务发现，查询，注册，DNS 作用是实现域名的解析，作用大概是一样的。
+
+在客户端和服务端通信过程中（request,socket,websocket,ftp等），我们一般都需要知道对方的域名或者ip/port才能通信。
+而在发送请求前，域名最终会经过一个叫DNS服务器的地方解析出相应的ip/port才能通信。
+在局域网中，各个设备是没有域名的。此时我们只能通过ip/port来通信，但一般情况下各设备的ip是不固定的，它们是由DHCP分配的，在偶尔的掉线重连之后没准ip就变了，而且你也不知道要连接的设备的ip是多少。
 
 * **RFC 6762 Multicast DNS** specifies how to perform DNS queries over IP Multicast.
 ## DNS Service Discovery (DNS-SD)
