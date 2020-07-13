@@ -38,6 +38,7 @@ HTTP Response头信息<br>
 - Location: 表示客户应当到哪里去提取文档, Location通常不是直接设置的，而是通过HttpServletResponse的sendRedirect方法，该方法同时设置状态代码为302。<br>
 - Server: 服务器名字。<br>
 - Refresh: 表示浏览器应该在多少时间之后刷新文档，以秒计。<br>
+- connection: request和response header中都有可能出现一个connection的头，此header的含义是当client和server通信时对于长链接如何进行处理。
 
 HTTP状态码<br>
 当浏览者访问一个网页时，浏览者的浏览器会向网页所在服务器发出请求。当浏览器接收并显示网页前，此网页所在的服务器会返回一个包含HTTP状态码的信息头（server header）用以响应浏览器的请求。
