@@ -5,6 +5,8 @@ From
 + https://binkery.com/archives/318.html
 + https://www.cnblogs.com/bonelee/p/7567029.html
 + https://www.jianshu.com/p/e66b0d400807
++ https://www.win.tue.nl/~johanl/educ/IoT-Course/mDNS-SD%20Tutorial.pdf
++ http://www.avahi.org/doxygen/v0.7/html/
 
 # 1. mDNS & DNSSD
 ## Multicast DNS（mDNS）
@@ -37,6 +39,12 @@ If you think the picture below looks a lot like the old Macintosh AppleTalk “C
 
 * DNS Service Discovery is compatible with, but not dependent on, Multicast DNS.
 * **RFC 6763 DNS-Based Service Discovery** describes how to perform network browsing and service discovery using only standard DNS packets and record types. DNS-SD is not dependent on Multicast DNS (it works with unicast as well); DNS-SD and mDNS are complementary technologies that can be used together.
+
+There are several freely available implementationsof mDNS/DNS-SD:<br>
+1.avahi–Linux implementation (http://www.avahi.org/)<br>
+2.jmDNS–Java implementation(http://jmdns.sourceforge.net/)<br>
+3.Bonjour –MACOS(installed by default)<br>
+4.Bonjour –Windows (https://support.apple.com/kb/DL999?locale=en_US)<br>
 
 # 2. Bonjour
 The **mDNS** protocol, together with **DNS Service Discovery** (below), forms the basis for Apple's ease-of-use initiative called Bonjour. Apple began shipping mDNS in Mac OS X 10.2 in 2002, and 
