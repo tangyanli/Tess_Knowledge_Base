@@ -1,3 +1,6 @@
+https://www.debian.org/doc/manuals/debmake-doc/index.en.html
+https://www.debian.org/doc/manuals/maint-guide/index.en.html
+
 # 1.从源中取得代码以及需要的依赖库
 * sudo apt-cache showsrc xxx		    &nbsp;&nbsp;&nbsp;&nbsp;*//查询是否有该source*
 * sudo apt-get source xxx				    &nbsp;&nbsp;&nbsp;&nbsp;*//获得source*
