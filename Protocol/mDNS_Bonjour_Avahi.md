@@ -63,42 +63,42 @@ Bonjour 的工作原理是，使用多址广播流量通告服务的可用状态
 
 macOS 和 Windows 版 Bonjour 客户端还可以使用传统的单播 DNS 来发现在世界各地任何可访问的域中通告的服务。使用 DNS 发现本地网络之外的服务称为广域 Bonjour。
 
-A printer that supports Bonjour can be found automatically using the dnssd backend. Run the lpinfo(8) command to find your printer's URI:
-> `$ lpinfo --include-schemes dnssd -v `<br>
-   > `network dnssd://Acme%20Laser%20Pro._ipp._tcp.local./?uuid=545253fb-1cb7-4d8d-98ed-ab6cd607cea7` <br>
-   > `network dnssd://Bar99._printer.tcp.local./?uuid=f9efff58-9086-4c95-accb-81dee876a475` <br>
-   > `network dnssd://Example%20EX-42._ipps._tcp.local./?uuid=4a0c67ad-2824-4ddf-9115-7d4226c5fe65` <br>
-   > `network dnssd://Foo%20Fighter-1969._pdl-datastream._tcp.local./?uuid=4e216bea-c3de-4f65-a710-c99e11c80d2b` <br>
+A printer that supports Bonjour can be found automatically using the dnssd backend. Run the lpinfo(8) command to find your printer's URI:<br>
+`$ lpinfo --include-schemes dnssd -v `<br>
+`network dnssd://Acme%20Laser%20Pro._ipp._tcp.local./?uuid=545253fb-1cb7-4d8d-98ed-ab6cd607cea7` <br>
+`network dnssd://Bar99._printer.tcp.local./?uuid=f9efff58-9086-4c95-accb-81dee876a475` <br>
+`network dnssd://Example%20EX-42._ipps._tcp.local./?uuid=4a0c67ad-2824-4ddf-9115-7d4226c5fe65` <br>
+`network dnssd://Foo%20Fighter-1969._pdl-datastream._tcp.local./?uuid=4e216bea-c3de-4f65-a710-c99e11c80d2b` <br>
 
 # 4. Avahi
 Avahi is a system which facilitates service discovery on a local network via the **mDNS/DNS-SD** protocol suite. This enables you to plug your laptop or computer into a network and instantly be able to view other people who you can chat with, find printers to print to or find files being shared. Compatible technology is found in Apple MacOS X (branded "Bonjour" and sometimes "Zeroconf").
 
 Avahi is primarily targetted at Linux systems and ships by default in most distributions. It is not ported to Windows at this stage, but will run on many other BSD-like systems. The primary API is D-Bus and is required for usage of most of Avahi, however services can be published using an XML service definition placed in /etc/avahi/services.
 
-通过如下命令在localhost public/register一个server名：test,协议：_test._tcp，端口：1234的server
-> `avahi-publish -s test _test._tcp 1234`
+通过如下命令在localhost public/register一个server名：test,协议：_test._tcp，端口：1234的server<br>
+`avahi-publish -s test _test._tcp 1234`<br>
 
-通过如下命令查询协议是_test._tcp的server名
-> `avahi-browse _test._tcp -r`
+通过如下命令查询协议是_test._tcp的server名<br>
+`avahi-browse _test._tcp -r`
 
-   >  `=     lo IPv4 test                                          _test._tcp           local` <br>
-   >        `hostname = [localhost]` <br>
-   >        `address = [127.0.0.1]`  <br>
-   >        `port = [1234]`          <br>
-   >        `txt = []`               <br>
+`=     lo IPv4 test                                          _test._tcp           local` <br>
+`hostname = [localhost]` <br>
+`address = [127.0.0.1]`  <br>
+`port = [1234]`          <br>
+`txt = []`               <br>
 
 You can also use avahi-discover to find the server. <br>
 man avahi-discover - Browse for mDNS/DNS-SD services using the Avahi-daemon. <br>
 Show a real-time graphical browse list for mDNS/DNS-SD network services running on the local LAN using the Avahi daemon. <br>
 
 # 5. IPP (Internet Printing Protocol)
-IPP is the only protocol that CUPS supports natively and is supported by most network printers and print servers. IPP supports encryption and other security features over port 631 and uses the http (Windows), ipp, and ipps backends. Device URIs for these backends look like this:
-> + http://ip-address-or-hostname:port-number/printers/name/.printer
-> + ipp://ip-address/ipp/print
-> + ipp://ip-address-or-hostname/printers/name
-> + ipps://ip-address/ipp/print
-> + ipps://ip-address:443/ipp/print
-> + ipps://ip-address-or-hostname/printers/name
+IPP is the only protocol that CUPS supports natively and is supported by most network printers and print servers. IPP supports encryption and other security features over port 631 and uses the http (Windows), ipp, and ipps backends. Device URIs for these backends look like this:<br>
+`http://ip-address-or-hostname:port-number/printers/name/.printer`<br>
+`ipp://ip-address/ipp/print`<br>
+`ipp://ip-address-or-hostname/printers/name`<br>
+`ipps://ip-address/ipp/print`<br>
+`ipps://ip-address:443/ipp/print`<br>
+`ipps://ip-address-or-hostname/printers/name`<br>
 
 # 6. Other
 ## DHCP(动态主机配置协议)
@@ -111,10 +111,10 @@ IPP is the only protocol that CUPS supports natively and is supported by most ne
 * mDNS的域名与普通DNS的域名是通过后缀.local区分开来的。
 * 每个进入局域网的主机，如果开启了mDNS服务的话，都会向局域网内的所有主机组播一个消息，我是谁，和我的IP地址是多少。然后其他也有该服务的主机就会响应，也会告诉你，它是谁，它的IP地址是多少。mDNS的域名与普通DNS的域名是通过后缀.local区分开来的。如果一台终端需要访问一个mDNS域名，他就会向局域网内发送组播，询问该域名的IP是多少。
 比如，A主机进入局域网，开启了 mDNS 服务，并向 mDNS 服务注册以下信息：我提供 FTP 服务，我的IP是 192.168.1.101，端口是 21。当B主机进入局域网，并向 B 主机的 mDNS 服务请求，我要找局域网内 FTP 服务器，B主机的 mDNS 就会去局域网内向其他的 mDNS 询问，并且最终告诉你，有一个IP地址为 192.168.1.101，端口号是 21 的主机，也就是 A 主机提供 FTP 服务，所以 B 主机就知道了 A 主机的 IP 地址和端口号了。
-* 某台打印机设置如下：
-   + [IPv4设定]-[DNS设定]-[Host名]：Tesscf9d6c
-   + [IPv4设定]-[mDNS设定]:ON
-   + [IPv4设定]-[mDNS设定]-[mDNS名]:Tess MF7XXC
+* 某台打印机设置如下：<br>
+   `[IPv4设定]-[DNS设定]-[Host名]：Tesscf9d6c`<br>
+   `[IPv4设定]-[mDNS设定]:ON`<br>
+   `[IPv4设定]-[mDNS设定]-[mDNS名]:Tess MF7XXC`<br>
    
    客户端 
    + 运行$driverless, 输出 <br>
