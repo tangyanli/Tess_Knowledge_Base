@@ -1,4 +1,4 @@
-From 
+REF 
 + http://multicastdns.org/
 + https://support.apple.com/zh-cn/guide/deployment-reference-macos/apd0401947ff/1/web/1
 + https://www.cups.org/doc/network.html
@@ -8,8 +8,7 @@ From
 + https://www.win.tue.nl/~johanl/educ/IoT-Course/mDNS-SD%20Tutorial.pdf
 + http://www.avahi.org/doxygen/v0.7/html/
 
-# 1. mDNS & DNSSD
-## Multicast DNS（mDNS）
+# 1. mDNS
 Multicast DNS is a way of using familiar DNS programming interfaces, packet formats and operating semantics, in a small network where 
 no conventional DNS server has been installed.
 
@@ -32,7 +31,7 @@ mDNS 基于 UDP 协议。DNS 一般也是基于 UDP 协议的，但是也可以�
 在局域网中，各个设备是没有域名的。此时我们只能通过ip/port来通信，但一般情况下各设备的ip是不固定的，它们是由DHCP分配的，在偶尔的掉线重连之后没准ip就变了，而且你也不知道要连接的设备的ip是多少。
 
 * **RFC 6762 Multicast DNS** specifies how to perform DNS queries over IP Multicast.
-## DNS Service Discovery (DNS-SD)
+# 2. DNS Service Discovery (DNS-SD)
 DNS Service Discovery is a way of using standard DNS programming interfaces, servers, and packet formats to browse the network for services.
 
 If you think the picture below looks a lot like the old Macintosh AppleTalk “Chooser”, that’s no coincidence. As we move away from AppleTalk to an all-IP world, we don’t want to have to give up the convenience and ease of use that made AppleTalk popular, and made AppleTalk continue to be popular long after it should rightfully have been retired.
@@ -46,7 +45,7 @@ There are several freely available implementationsof mDNS/DNS-SD:<br>
 3.Bonjour –MACOS(installed by default)<br>
 4.Bonjour –Windows (https://support.apple.com/kb/DL999?locale=en_US)<br>
 
-# 2. Bonjour
+# 3. Bonjour
 The **mDNS** protocol, together with **DNS Service Discovery** (below), forms the basis for Apple's ease-of-use initiative called Bonjour. Apple began shipping mDNS in Mac OS X 10.2 in 2002, and 
 today you'll find it in a wide range of hardware products, including 
 * Apple AirPort base stations, 
@@ -64,40 +63,35 @@ Bonjour 的工作原理是，使用多址广播流量通告服务的可用状态
 
 macOS 和 Windows 版 Bonjour 客户端还可以使用传统的单播 DNS 来发现在世界各地任何可访问的域中通告的服务。使用 DNS 发现本地网络之外的服务称为广域 Bonjour。
 
-# 3. Avahi
+A printer that supports Bonjour can be found automatically using the dnssd backend. Run the lpinfo(8) command to find your printer's URI:
+> `$ lpinfo --include-schemes dnssd -v `<br>
+   > `network dnssd://Acme%20Laser%20Pro._ipp._tcp.local./?uuid=545253fb-1cb7-4d8d-98ed-ab6cd607cea7` <br>
+   > `network dnssd://Bar99._printer.tcp.local./?uuid=f9efff58-9086-4c95-accb-81dee876a475` <br>
+   > `network dnssd://Example%20EX-42._ipps._tcp.local./?uuid=4a0c67ad-2824-4ddf-9115-7d4226c5fe65` <br>
+   > `network dnssd://Foo%20Fighter-1969._pdl-datastream._tcp.local./?uuid=4e216bea-c3de-4f65-a710-c99e11c80d2b` <br>
+
+# 4. Avahi
 Avahi is a system which facilitates service discovery on a local network via the **mDNS/DNS-SD** protocol suite. This enables you to plug your laptop or computer into a network and instantly be able to view other people who you can chat with, find printers to print to or find files being shared. Compatible technology is found in Apple MacOS X (branded "Bonjour" and sometimes "Zeroconf").
 
 Avahi is primarily targetted at Linux systems and ships by default in most distributions. It is not ported to Windows at this stage, but will run on many other BSD-like systems. The primary API is D-Bus and is required for usage of most of Avahi, however services can be published using an XML service definition placed in /etc/avahi/services.
 
 通过如下命令在localhost public/register一个server名：test,协议：_test._tcp，端口：1234的server
-> avahi-publish -s test _test._tcp 1234
+> `avahi-publish -s test _test._tcp 1234`
 
 通过如下命令查询协议是_test._tcp的server名
-> avahi-browse _test._tcp -r
+> `avahi-browse _test._tcp -r`
 
-   >  =     lo IPv4 test                                          _test._tcp           local <br>
-   >        hostname = [localhost] <br>
-   >        address = [127.0.0.1]  <br>
-   >        port = [1234]          <br>
-   >        txt = []               <br>
+   >  `=     lo IPv4 test                                          _test._tcp           local` <br>
+   >        `hostname = [localhost]` <br>
+   >        `address = [127.0.0.1]`  <br>
+   >        `port = [1234]`          <br>
+   >        `txt = []`               <br>
 
 You can also use avahi-discover to find the server. <br>
 man avahi-discover - Browse for mDNS/DNS-SD services using the Avahi-daemon. <br>
 Show a real-time graphical browse list for mDNS/DNS-SD network services running on the local LAN using the Avahi daemon. <br>
 
-# 4. DHCP(动态主机配置协议)
-是一个局域网的网络协议。指的是由服务器控制一段IP地址范围，客户机登录服务器时就可以自动获得服务器分配的IP地址和子网掩码。默认情况下，DHCP作为Windows Server的一个服务组件不会被系统自动安装，还需要管理员手动安装并进行必要的配置。
-
-# 5. Using Network Printers
-## dnssd
-A printer that supports Bonjour can be found automatically using the dnssd backend. Run the lpinfo(8) command to find your printer's URI:
-> $ lpinfo --include-schemes dnssd -v <br>
-   > network dnssd://Acme%20Laser%20Pro._ipp._tcp.local./?uuid=545253fb-1cb7-4d8d-98ed-ab6cd607cea7 <br>
-   > network dnssd://Bar99._printer.tcp.local./?uuid=f9efff58-9086-4c95-accb-81dee876a475 <br>
-   > network dnssd://Example%20EX-42._ipps._tcp.local./?uuid=4a0c67ad-2824-4ddf-9115-7d4226c5fe65 <br>
-   > network dnssd://Foo%20Fighter-1969._pdl-datastream._tcp.local./?uuid=4e216bea-c3de-4f65-a710-c99e11c80d2b <br>
- 
-## Internet Printing Protocol (IPP)
+# 5. IPP (Internet Printing Protocol)
 IPP is the only protocol that CUPS supports natively and is supported by most network printers and print servers. IPP supports encryption and other security features over port 631 and uses the http (Windows), ipp, and ipps backends. Device URIs for these backends look like this:
 > + http://ip-address-or-hostname:port-number/printers/name/.printer
 > + ipp://ip-address/ipp/print
@@ -106,7 +100,11 @@ IPP is the only protocol that CUPS supports natively and is supported by most ne
 > + ipps://ip-address:443/ipp/print
 > + ipps://ip-address-or-hostname/printers/name
 
-# 6. 总结
+# 6. Other
+## DHCP(动态主机配置协议)
+是一个局域网的网络协议。指的是由服务器控制一段IP地址范围，客户机登录服务器时就可以自动获得服务器分配的IP地址和子网掩码。默认情况下，DHCP作为Windows Server的一个服务组件不会被系统自动安装，还需要管理员手动安装并进行必要的配置。
+
+# 7. 总结
 * mDNS协议将主机名解析为不包含本地名称服务器的小型网络中的IP地址
 * mDNS可以与DNS-SD结合使用
 * mDNS由Apple Bonjour和开源软件Avahi实现
@@ -120,8 +118,8 @@ IPP is the only protocol that CUPS supports natively and is supported by most ne
    
    客户端 
    + 运行$driverless, 输出 <br>
-      ipp://Tesscf9d6c.local:631/ipp/print
+      `ipp://Tesscf9d6c.local:631/ipp/print`
    + 运行$lpinfo -v, 输出 <br>
-      network dnssd://Tess%20MF7XXC._ipp._tcp.local/?uuid=6d4ff0ce-6b11-11d8-8020-f4a997cf9d6c <br>
-      network ipp://Tesscf9d6c.local:631/ipp/print <br>
+      `network dnssd://Tess%20MF7XXC._ipp._tcp.local/?uuid=6d4ff0ce-6b11-11d8-8020-f4a997cf9d6c` <br>
+      `network ipp://Tesscf9d6c.local:631/ipp/print` <br>
    + 通过ipp-over-usb得到的dnssd name:Tess MF7XXC
