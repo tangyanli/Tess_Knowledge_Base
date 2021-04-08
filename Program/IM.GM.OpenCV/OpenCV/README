@@ -1,0 +1,23 @@
+﻿0. License
+   >= OpenCV 4.5.0: Apache 2 License.
+   <= OpenCV 4.4.0: 3-clause BSD license
+   参考 https://opencv.org/license
+
+1. OpenCV C++编译环境步骤
+   参考 https://docs.opencv.org/4.5.0/d7/d9f/tutorial_linux_install.html
+
+2. Sample代码
+   参考 resize.cpp
+   参考 https://qiita.com/yoyoyoyoyo/items/aada199371f6802bb887
+   参考 https://docs.opencv.org/3.4/d4/da8/group__imgcodecs.html
+
+3. 编译步骤
+   g++ `pkg-config --cflags opencv4` -o resize resize.cpp `pkg-config --libs opencv4`
+   g++ `pkg-config --cflags opencv` -o resize-4x4-A3 resize-4x4-A3.cpp -lopencv_core -lopencv_imgcodecs -lopencv_imgproc
+
+4. 运行环境准备(??)
+   sudo apt install opencv
+   sudo apt install libopencv-dev
+
+5. 运行app
+   ./resize

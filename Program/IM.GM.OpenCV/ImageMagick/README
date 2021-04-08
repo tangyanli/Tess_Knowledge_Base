@@ -1,0 +1,25 @@
+﻿1. ImageMagick C++编译环境步骤
+   参考 https://imagemagick.org/script/magick++.php
+   1) git clone https://github.com/ImageMagick/ImageMagick.git
+   2) cd ImageMagick
+   3) ./configure
+   4) make
+   5) sudo make install
+
+2. Sample代码
+   参考core.c
+   
+3. 编译步骤
+   export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
+   gcc -o core core.c `pkg-config --cflags --libs MagickCore`
+   gcc -o resize_2x2-A3 resize_2x2-A3.c `pkg-config --cflags MagickCore` -ldl
+   
+
+4. 运行环境准备
+   //sudo apt install imagemagick
+   //sudo apt install imagemagick-6.q16hdri
+
+5. 运行app
+   ./core
+
+
