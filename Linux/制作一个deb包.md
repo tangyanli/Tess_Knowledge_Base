@@ -193,6 +193,7 @@ Notes：若一不小心把debian下的模板玩坏了，可以使用dh_make --ad
 |control文件|需要维护build-dep信息，可以用命令$objdump -p libsane-airscan.so | grep NEEDED来查看需要哪些依赖库|
 |copyright||
 |changelog|若打了patch的话，建议修改一下dch -n "Apply test.patch"|
+|rules|某些Unbuntu系统某人的压缩是control.tar.zst, 可以在rule文件中重新指定压缩方式override_dh_builddeb:\r\tdh_builddeb -- -Zxz|
 
 ## Step5: 打上patch
 ## Step6: 编译
