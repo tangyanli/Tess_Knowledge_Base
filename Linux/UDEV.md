@@ -143,3 +143,5 @@ Ubuntu14.04, Debian8.11, Cent0s7.7, Fedora28之后的系统也可以直接用如
 
 # 5. Other 
 # 现存的issue：ipp-usb和厂商的USB Driver不能并存<br>
+
+在github上做个Pull Request测试
